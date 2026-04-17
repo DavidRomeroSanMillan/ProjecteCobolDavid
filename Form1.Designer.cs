@@ -36,6 +36,7 @@
             dgvDespeses = new DataGridView();
             btnActualitzar = new Button();
             btnBorrarDat = new Button();
+            btnMostrarInforme = new Button();
             lblNom = new Label();
             lblCost = new Label();
             lblData = new Label();
@@ -46,7 +47,7 @@
             // 
             // btnGuardar
             // 
-            btnGuardar.Location = new Point(439, 9);
+            btnGuardar.Location = new Point(418, 9);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(75, 23);
             btnGuardar.TabIndex = 0;
@@ -90,15 +91,15 @@
             // dgvDespeses
             // 
             dgvDespeses.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvDespeses.Location = new Point(24, 83);
+            dgvDespeses.Location = new Point(24, 77);
             dgvDespeses.Name = "dgvDespeses";
             dgvDespeses.ReadOnly = true;
-            dgvDespeses.Size = new Size(490, 210);
+            dgvDespeses.Size = new Size(445, 216);
             dgvDespeses.TabIndex = 5;
             // 
             // btnActualitzar
             // 
-            btnActualitzar.Location = new Point(439, 46);
+            btnActualitzar.Location = new Point(418, 47);
             btnActualitzar.Name = "btnActualitzar";
             btnActualitzar.Size = new Size(75, 23);
             btnActualitzar.TabIndex = 6;
@@ -108,13 +109,22 @@
             // 
             // btnBorrarDat
             // 
-            btnBorrarDat.Location = new Point(520, 46);
+            btnBorrarDat.Location = new Point(475, 270);
             btnBorrarDat.Name = "btnBorrarDat";
-            btnBorrarDat.Size = new Size(69, 23);
+            btnBorrarDat.Size = new Size(114, 23);
             btnBorrarDat.TabIndex = 11;
-            btnBorrarDat.Text = "Borrar .DAT";
+            btnBorrarDat.Text = "Esborrar dades";
             btnBorrarDat.UseVisualStyleBackColor = true;
             btnBorrarDat.Click += btnBorrarDat_Click;
+            // 
+            // btnMostrarInforme
+            // 
+            btnMostrarInforme.Location = new Point(499, 47);
+            btnMostrarInforme.Name = "btnMostrarInforme";
+            btnMostrarInforme.Size = new Size(75, 23);
+            btnMostrarInforme.TabIndex = 12;
+            btnMostrarInforme.Text = "Informe";
+            btnMostrarInforme.Click += btnMostrarInforme_Click;
             // 
             // lblNom
             // 
@@ -163,6 +173,7 @@
             Controls.Add(lblNom);
             Controls.Add(btnActualitzar);
             Controls.Add(btnBorrarDat);
+            Controls.Add(btnMostrarInforme);
             Controls.Add(dgvDespeses);
             Controls.Add(cmbTipus);
             Controls.Add(dtpData);
@@ -187,6 +198,7 @@
         private DataGridView dgvDespeses;
         private Button btnActualitzar;
         private Button btnBorrarDat;
+        private Button btnMostrarInforme;
         private Label lblNom;
         private Label lblCost;
         private Label lblData;

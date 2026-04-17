@@ -30,8 +30,7 @@ namespace ProjecteCobolDavid
             string tipusFix = d.Tipus.PadRight(20).Substring(0, 20);
             string arguments = $"\"{nomFix}\" \"{costFix}\" \"{dataFix}\" \"{tipusFix}\"";
 
-            // Debug: escrivim els arguments perquè puguis verificar què es passa al COBOL
-            // Debug.WriteLine("EnviarACobol arguments: " + arguments);
+            
 
             ProcessStartInfo startInfo = new ProcessStartInfo
             {
@@ -56,11 +55,11 @@ namespace ProjecteCobolDavid
                     if (all.Length > 0)
                     {
                         string last = all[all.Length - 1];
-                        //Debug.WriteLine("Última línia escrita: " + last);
-                       // if (last.Length >= 38)
-                        //{
-                          //  Debug.WriteLine("Cost raw al DAT: '" + last.Substring(30, 8) + "'");
-                        //}
+                        Debug.WriteLine("Última línia escrita: " + last);
+                        if (last.Length >= 38)
+                        {
+                         Debug.WriteLine("Cost raw al DAT: '" + last.Substring(30, 8) + "'");
+                        }
                     }
                 }
             }

@@ -1,4 +1,6 @@
 using System.Globalization;
+using System.IO;
+using Microsoft.Reporting.WinForms;
 using System.Diagnostics;
 
 namespace ProjecteCobolDavid
@@ -53,7 +55,7 @@ namespace ProjecteCobolDavid
 
         private void btnBorrarDat_Click(object sender, EventArgs e)
         {
-            var resp = MessageBox.Show("Segur que vols esborrar tot el contingut de DESPESES.DAT?", "Confirmar borrat", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            var resp = MessageBox.Show("Segur que vols esborrar tot el contingut de DESPESES.DAT?", "Confirmar esborrat", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (resp != DialogResult.Yes) return;
 
             try
@@ -66,6 +68,21 @@ namespace ProjecteCobolDavid
             catch (Exception ex)
             {
                 MessageBox.Show("Error esborrant DESPESES.DAT:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnMostrarInforme_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var datos = Despesa.CarregarDades();
+                var f = new ReportForm();
+                f.LoadReport(datos);
+                f.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error mostrant l'informe:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
