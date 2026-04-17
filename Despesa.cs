@@ -12,7 +12,7 @@ namespace ProjecteCobolDavid
         // Format 000000.00
         public double Cost { get; set; }
         // YYYY-MM-DD
-        public string Data { get; set; }
+        public DateTime Data { get; set; }
         // Max 20
         public string Tipus { get; set; }
 
@@ -21,9 +21,7 @@ namespace ProjecteCobolDavid
             // Formatem les dades per tenir la longitud fixa que COBOL espera
             string nomFix = d.Nom.PadRight(30).Substring(0, 30);
             string costFix = d.Cost.ToString("000000.00").Replace(",", ""); // Sense coma per a COBOL
-            string dataFix = d.Data.PadRight(10);
-            string tipusFix = d.Tipus.PadRight(20).Substring(0, 20);
-
+            string dataFix = d.Data.ToString("yyyy-MM-dd").PadRight(10); string tipusFix = d.Tipus.PadRight(20).Substring(0, 20);
             string arguments = $"\"{nomFix}\" \"{costFix}\" \"{dataFix}\" \"{tipusFix}\"";
 
             ProcessStartInfo startInfo = new ProcessStartInfo

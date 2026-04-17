@@ -1,0 +1,40 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. ECONOPARSE-SAVE.
+
+       ENVIRONMENT DIVISION.
+       INPUT-OUTPUT SECTION.
+       FILE-CONTROL.
+       SELECT DESPESES-FILE ASSIGN TO "DESPESES.DAT"
+       ORGANIZATION IS LINE SEQUENTIAL.
+
+       DATA DIVISION.
+       FILE SECTION.
+       FD  DESPESES-FILE.
+       01  REGISTRE-DESPESA.
+           05 DET-NOM      PIC X(30).
+           05 DET-COST     PIC 9(06)V99.
+           05 DET-DATA     PIC X(10).
+           05 DET-TIPUS    PIC X(20).
+
+       WORKING-STORAGE SECTION.
+       LINKAGE SECTION.
+      * Aquestes dades les rebrem des de C#
+       01  PARAMETRES-ENTRADA.
+           05 L-NOM        PIC X(30).
+           05 L-COST       PIC 9(06)V99.
+           05 L-DATA       PIC X(10).
+           05 L-TIPUS      PIC X(20).
+
+       PROCEDURE DIVISION USING PARAMETRES-ENTRADA.
+       MAIN-PROCEDURE.
+           OPEN EXTEND DESPESES-FILE.
+
+           MOVE L-NOM   TO DET-NOM.
+           MOVE L-COST  TO DET-COST.
+           MOVE L-DATA  TO DET-DATA.
+           MOVE L-TIPUS TO DET-TIPUS.
+
+           WRITE REGISTRE-DESPESA.
+
+           CLOSE DESPESES-FILE.
+           GOBACK.
