@@ -23,8 +23,6 @@ namespace ProjecteCobolDavid
         {
             // Formatem les dades per tenir la longitud fixa que COBOL espera
             string nomFix = d.Nom.PadRight(30).Substring(0, 30);
-            // En lloc d'enviar els cèntims, enviem el valor amb decimals (p. ex. 25.37)
-            // COBOL acceptarà aquest format en un PIC 9(06)V99 i el desarà correctament
             string costFix = d.Cost.ToString("0.00", CultureInfo.InvariantCulture);
             string dataFix = d.Data.ToString("yyyy-MM-dd");
             string tipusFix = d.Tipus.PadRight(20).Substring(0, 20);

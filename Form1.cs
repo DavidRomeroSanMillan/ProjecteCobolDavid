@@ -1,5 +1,6 @@
 using System.Globalization;
 using System.IO;
+using System.Collections.Generic;
 using Microsoft.Reporting.WinForms;
 using System.Diagnostics;
 
@@ -28,6 +29,13 @@ namespace ProjecteCobolDavid
         }
         private void btnGuardar_Click(object sender, EventArgs e)
         {
+            // Validem que els camps obligatoris estiguin omplerts
+            if (!ValidateInputs(out string missing))
+            {
+                MessageBox.Show($"Falten els següents camps obligatoris: {missing}", "Camps obligatoris", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             // Creem l'objecte amb les dades dels controls del formulari
             Despesa nova = new Despesa()
             {
@@ -137,6 +145,17 @@ namespace ProjecteCobolDavid
             {
                 Debug.WriteLine("Error al ordenar: " + ex.Message);
             }
+        }
+
+        private bool ValidateInputs(out string missing)
+        {
+            var missingList = new List<string>();
+            if (string.IsNullOrWhiteSpace(txtNom.Text)) missingList.Add("Nom");
+            if (numCost.Value <= 0m) missingList.Add("Cost");
+            if (string.IsNullOrWhiteSpace(cmbTipus.Text)) missingList.Add("Tipus");
+            // La data normalment sempre està present en DateTimePicker, però si vols podríem validar rang
+            missing = string.Join(", ", missingList);
+            return missingList.Count == 0;
         }
     }
 }
