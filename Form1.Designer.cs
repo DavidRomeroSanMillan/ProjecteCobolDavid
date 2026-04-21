@@ -41,17 +41,18 @@
             lblCost = new Label();
             lblData = new Label();
             lblTipus = new Label();
+            btnEsborrar1 = new Button();
             ((System.ComponentModel.ISupportInitialize)numCost).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvDespeses).BeginInit();
             SuspendLayout();
             // 
             // btnGuardar
             // 
-            btnGuardar.Location = new Point(418, 9);
+            btnGuardar.Location = new Point(499, 48);
             btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(75, 23);
+            btnGuardar.Size = new Size(87, 48);
             btnGuardar.TabIndex = 0;
-            btnGuardar.Text = "Guardar";
+            btnGuardar.Text = "Guardar despesa";
             btnGuardar.UseVisualStyleBackColor = true;
             btnGuardar.Click += btnGuardar_Click;
             // 
@@ -74,7 +75,7 @@
             // 
             // dtpData
             // 
-            dtpData.Location = new Point(283, 9);
+            dtpData.Location = new Point(248, 12);
             dtpData.Name = "dtpData";
             dtpData.Size = new Size(120, 23);
             dtpData.TabIndex = 3;
@@ -82,8 +83,8 @@
             // cmbTipus
             // 
             cmbTipus.FormattingEnabled = true;
-            cmbTipus.Items.AddRange(new object[] { "Compra", "Despeses llar", "Alquiler", "Oci", "Hipoteca" });
-            cmbTipus.Location = new Point(282, 48);
+            cmbTipus.Items.AddRange(new object[] { "Compra", "Despeses llar", "Alquiler/Hipoteca", "Oci", "Factures", "Roba", "Salut", "Transport", "Educació", "Manteniment", "Tecnologia", "Altres" });
+            cmbTipus.Location = new Point(435, 12);
             cmbTipus.Name = "cmbTipus";
             cmbTipus.Size = new Size(121, 23);
             cmbTipus.TabIndex = 4;
@@ -94,36 +95,36 @@
             dgvDespeses.Location = new Point(24, 77);
             dgvDespeses.Name = "dgvDespeses";
             dgvDespeses.ReadOnly = true;
-            dgvDespeses.Size = new Size(445, 216);
+            dgvDespeses.Size = new Size(469, 216);
             dgvDespeses.TabIndex = 5;
             // 
             // btnActualitzar
             // 
-            btnActualitzar.Location = new Point(418, 47);
+            btnActualitzar.Location = new Point(499, 156);
             btnActualitzar.Name = "btnActualitzar";
-            btnActualitzar.Size = new Size(75, 23);
+            btnActualitzar.Size = new Size(87, 48);
             btnActualitzar.TabIndex = 6;
-            btnActualitzar.Text = "Actualitzar";
+            btnActualitzar.Text = "Actualitzar llista";
             btnActualitzar.UseVisualStyleBackColor = true;
             btnActualitzar.Click += btnActualitzar_Click;
             // 
             // btnBorrarDat
             // 
-            btnBorrarDat.Location = new Point(475, 270);
+            btnBorrarDat.Location = new Point(499, 270);
             btnBorrarDat.Name = "btnBorrarDat";
-            btnBorrarDat.Size = new Size(114, 23);
+            btnBorrarDat.Size = new Size(90, 23);
             btnBorrarDat.TabIndex = 11;
-            btnBorrarDat.Text = "Esborrar dades";
+            btnBorrarDat.Text = "Esborrar tot";
             btnBorrarDat.UseVisualStyleBackColor = true;
             btnBorrarDat.Click += btnBorrarDat_Click;
             // 
             // btnMostrarInforme
             // 
-            btnMostrarInforme.Location = new Point(499, 47);
+            btnMostrarInforme.Location = new Point(499, 210);
             btnMostrarInforme.Name = "btnMostrarInforme";
-            btnMostrarInforme.Size = new Size(75, 23);
+            btnMostrarInforme.Size = new Size(90, 54);
             btnMostrarInforme.TabIndex = 12;
-            btnMostrarInforme.Text = "Informe";
+            btnMostrarInforme.Text = "Les meves estadístiques";
             btnMostrarInforme.Click += btnMostrarInforme_Click;
             // 
             // lblNom
@@ -147,7 +148,7 @@
             // lblData
             // 
             lblData.AutoSize = true;
-            lblData.Location = new Point(224, 15);
+            lblData.Location = new Point(208, 15);
             lblData.Name = "lblData";
             lblData.Size = new Size(34, 15);
             lblData.TabIndex = 9;
@@ -156,17 +157,28 @@
             // lblTipus
             // 
             lblTipus.AutoSize = true;
-            lblTipus.Location = new Point(223, 51);
+            lblTipus.Location = new Point(388, 15);
             lblTipus.Name = "lblTipus";
             lblTipus.Size = new Size(38, 15);
             lblTipus.TabIndex = 10;
             lblTipus.Text = "Tipus:";
+            // 
+            // btnEsborrar1
+            // 
+            btnEsborrar1.Location = new Point(499, 102);
+            btnEsborrar1.Name = "btnEsborrar1";
+            btnEsborrar1.Size = new Size(87, 48);
+            btnEsborrar1.TabIndex = 13;
+            btnEsborrar1.Text = "Esborrar despesa";
+            btnEsborrar1.UseVisualStyleBackColor = true;
+            btnEsborrar1.Click += btnEsborrar1_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(601, 305);
+            Controls.Add(btnEsborrar1);
             Controls.Add(lblTipus);
             Controls.Add(lblData);
             Controls.Add(lblCost);
@@ -181,7 +193,7 @@
             Controls.Add(txtNom);
             Controls.Add(btnGuardar);
             Name = "Form1";
-            Text = "Form1";
+            Text = "EconoParse";
             ((System.ComponentModel.ISupportInitialize)numCost).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvDespeses).EndInit();
             ResumeLayout(false);
@@ -203,5 +215,6 @@
         private Label lblCost;
         private Label lblData;
         private Label lblTipus;
+        private Button btnEsborrar1;
     }
 }

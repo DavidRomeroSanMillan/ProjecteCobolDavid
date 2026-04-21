@@ -15,14 +15,14 @@ namespace ProjecteCobolDavid
             InitializeComponent();
             dgvDespeses.DataSource = Despesa.CarregarDades();
             FormatCostColumn();
-            // Aseguramos que el NumericUpDown use 2 decimales y paso 0.01
+            // Assegurem que el NumericUpDown faci servir 2 decimals
             try
             {
                 numCost.DecimalPlaces = 2;
                 numCost.Increment = 0.01m;
             }
             catch { }
-            // Permitir ordenar clicando en las cabeceras
+            // Permetre ordenar clicant a les capçaleres
             dgvDespeses.ColumnHeaderMouseClick += dgvDespeses_ColumnHeaderMouseClick;
             
 
@@ -40,9 +40,9 @@ namespace ProjecteCobolDavid
             Despesa nova = new Despesa()
             {
                 Nom = txtNom.Text,
-                Cost = numCost.Value, // NumericUpDown.Value és decimal
-                Data = dtpData.Value,                  // Suposant que uses un DateTimePicker
-                Tipus = cmbTipus.Text                  // Suposant que uses un ComboBox
+                Cost = numCost.Value,  // NumericUpDown.Value és decimal
+                Data = dtpData.Value,  // Suposant que uses un DateTimePicker
+                Tipus = cmbTipus.Text  // Suposant que uses un ComboBox
             };
 
             // Cridem al mètode que executa el COBOL
@@ -109,11 +109,11 @@ namespace ProjecteCobolDavid
         {
             if (e.ColumnIndex < 0 || e.ColumnIndex >= dgvDespeses.Columns.Count) return;
             var col = dgvDespeses.Columns[e.ColumnIndex];
-            // Prefer DataPropertyName (viene del Binding), si no, usa Name
+            // Ternari DataPropertyName (ve del Binding), si no, usa Name
             var propName = string.IsNullOrEmpty(col.DataPropertyName) ? col.Name : col.DataPropertyName;
             if (string.IsNullOrEmpty(propName)) return;
 
-            // Alternar orden si se pulsa la misma columna
+            // Alternar ordre si el prem la mateixa columna
             if (_lastSortColumn == propName)
                 _lastSortAscending = !_lastSortAscending;
             else
@@ -128,7 +128,7 @@ namespace ProjecteCobolDavid
                 var prop = typeof(Despesa).GetProperty(propName);
                 if (prop == null)
                 {
-                    // Si no se encuentra la propiedad, no hacemos nada
+                    // Si no es troba la propietat, no fem res
                     return;
                 }
 
@@ -156,6 +156,53 @@ namespace ProjecteCobolDavid
             // La data normalment sempre està present en DateTimePicker, però si vols podríem validar rang
             missing = string.Join(", ", missingList);
             return missingList.Count == 0;
+        }
+
+        private void btnEsborrar1_Click(object sender, EventArgs e)
+        {
+            // Comprovem si hi ha una fila seleccionada
+            if (dgvDespeses.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Si us plau, selecciona una despesa per esborrar.", "Cap selecció", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Agafem la primera fila seleccionada
+            var selectedRow = dgvDespeses.SelectedRows[0];
+            var nomValue = selectedRow.Cells["Nom"].Value;
+            var costValue = selectedRow.Cells["Cost"].Value;
+            var dataValue = selectedRow.Cells["Data"].Value;
+
+            if (nomValue == null || costValue == null || dataValue == null)
+            {
+                MessageBox.Show("No es pot obtenir les dades de la despesa seleccionada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string nomDespesa = nomValue.ToString();
+            decimal costDespesa = Convert.ToDecimal(costValue);
+            DateTime dataDespesa = Convert.ToDateTime(dataValue);
+
+            // Demanem confirmació
+            var resp = MessageBox.Show($"Estàs segur que vols esborrar la despesa:\n\nNom: {nomDespesa.Trim()}\nCost: {costDespesa:N2}€\nData: {dataDespesa:yyyy-MM-dd}?", 
+                "Confirmar esborrat", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (resp != DialogResult.Yes) return;
+
+            try
+            {
+                // Cridem al mètode per esborrar la despesa específica (nom + cost + data)
+                Despesa.EsborrarDespesa(nomDespesa, costDespesa, dataDespesa);
+
+                // Recarreguem el DataGridView
+                dgvDespeses.DataSource = Despesa.CarregarDades();
+                FormatCostColumn();
+
+                MessageBox.Show("Despesa esborrada correctament.", "Fet", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error esborrant la despesa:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

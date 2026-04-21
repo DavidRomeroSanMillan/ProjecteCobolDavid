@@ -18,7 +18,6 @@ namespace ProjecteCobolDavid
         // Max 20
         public string Tipus { get; set; }
 
-        // Hace público para que el Form pueda llamarlo cuando quiera guardar usando el programa COBOL
         public static void EnviarACobol(Despesa d)
         {
             // Formatem les dades per tenir la longitud fixa que COBOL espera
@@ -43,7 +42,7 @@ namespace ProjecteCobolDavid
                 process.WaitForExit();
             }
 
-            // Després d'executar, intentionem llegir l'última línia del fitxer per comprovar què s'ha escrit
+            // Després d'executar, intentem llegir l'última línia del fitxer per comprovar què s'ha escrit
             try
             {
                 string path = "DESPESES.DAT";
@@ -125,26 +124,89 @@ namespace ProjecteCobolDavid
             return llista;
         }
 
-        // Borra todo el contenido del fichero DESPESES.DAT (vacía el fichero)
+        // Esborra tot el contingut del fitxer .dat
         public static void BorrarDat()
         {
             string path = "DESPESES.DAT";
             try
             {
-                // Si existe, truncamos el fichero a 0 bytes
+                // Si existeix, trunquem el fitxer a 0 bytes
                 if (File.Exists(path))
                 {
                     File.WriteAllText(path, string.Empty, Encoding.UTF8);
                 }
                 else
                 {
-                    // Creamos un fichero vacío por si se espera su existencia
+                    // Creem un fitxer buit per si s'espera la seva existència
                     using (var fs = File.Create(path)) { }
                 }
             }
             catch (Exception ex)
             {
                 Debug.WriteLine("Error borrando DESPESES.DAT: " + ex.Message);
+                throw;
+            }
+        }
+
+        // Esborra una despesa específica que coincideix amb Nom, Cost i Data
+        public static void EsborrarDespesa(string nom, decimal cost, DateTime data)
+        {
+            string path = "DESPESES.DAT";
+            try
+            {
+                if (!File.Exists(path)) return;
+
+                // Llegim totes les línies del fitxer
+                var totes = File.ReadAllLines(path);
+
+                // Creem una nova llista sense la línia que correspon exactament al nom, cost i data
+                var noves = new List<string>();
+                bool trobat = false;
+
+                foreach (var linia in totes)
+                {
+                    if (linia.Length >= 68) // Longitud total del registre
+                    {
+                        string nomAlFitxer = linia.Substring(0, 30).Trim();
+
+                        // Parsegem el cost (8 dígits en posició 30-37)
+                        string costText = linia.Substring(30, 8).Trim();
+                        decimal costAlFitxer = 0m;
+                        if (int.TryParse(costText, out int centsVal))
+                        {
+                            costAlFitxer = centsVal / 100m;
+                        }
+
+                        // Parsegem la data (10 caracteres en posició 38-47)
+                        string dataText = linia.Substring(38, 10).Trim();
+                        DateTime dataAlFitxer = DateTime.MinValue;
+                        DateTime.TryParseExact(dataText, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out dataAlFitxer);
+
+                        // Comprovem si nom, cost i data coincideixen
+                        if (nomAlFitxer == nom.Trim() && costAlFitxer == cost && dataAlFitxer.Date == data.Date && !trobat)
+                        {
+                            trobat = true;
+                            continue;
+                        }
+                    }
+
+                    // Mantenim totes les altres línies
+                    noves.Add(linia);
+                }
+
+                // Reescrivim el fitxer sense línies en blanc
+                if (noves.Count > 0)
+                {
+                    File.WriteAllLines(path, noves, Encoding.UTF8);
+                }
+                else
+                {
+                    File.WriteAllText(path, string.Empty, Encoding.UTF8);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error esborrant despesa: " + ex.Message);
                 throw;
             }
         }
