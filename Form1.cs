@@ -13,8 +13,15 @@ namespace ProjecteCobolDavid
         public Form1()
         {
             InitializeComponent();
-            dgvDespeses.DataSource = Despesa.CarregarDades();
+            dgvDespeses.DataSource = Despesa.CarregarDades(txtUsuari.Text);
             FormatCostColumn();
+            cmbMes.SelectedIndex = DateTime.Now.Month - 1;
+            numAny.Value = DateTime.Now.Year;
+            txtUsuari.TextChanged += (s, e) => AplicarFiltreTemporal();
+            cmbMes.SelectedIndexChanged += (s, e) => AplicarFiltreTemporal();
+            numAny.ValueChanged += (s, e) => AplicarFiltreTemporal();
+            AplicarFiltreTemporal();
+            
             // Assegurem que el NumericUpDown faci servir 2 decimals
             try
             {
@@ -29,6 +36,11 @@ namespace ProjecteCobolDavid
         }
         private void btnGuardar_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtUsuari.Text))
+            {
+                MessageBox.Show("Escriu un nom d'usuari primer!");
+                return;
+            }
             // Validem que els camps obligatoris estiguin omplerts
             if (!ValidateInputs(out string missing))
             {
@@ -40,16 +52,16 @@ namespace ProjecteCobolDavid
             Despesa nova = new Despesa()
             {
                 Nom = txtNom.Text,
-                Cost = numCost.Value,  // NumericUpDown.Value és decimal
-                Data = dtpData.Value,  // Suposant que uses un DateTimePicker
-                Tipus = cmbTipus.Text  // Suposant que uses un ComboBox
+                Cost = numCost.Value,  
+                Data = dtpData.Value,  
+                Tipus = cmbTipus.Text  
             };
 
             // Cridem al mètode que executa el COBOL
-            Despesa.EnviarACobol(nova);
+            Despesa.EnviarACobol(nova, txtUsuari.Text);
 
             // Actualitzem la graella (DataGridView)
-            dgvDespeses.DataSource = Despesa.CarregarDades();
+            AplicarFiltreTemporal();
             FormatCostColumn();
             dgvDespeses.Refresh();
             MessageBox.Show("Despesa enregistrada correctament per EconoParse!");
@@ -57,7 +69,7 @@ namespace ProjecteCobolDavid
 
         private void btnActualitzar_Click(object sender, EventArgs e)
         {
-            dgvDespeses.DataSource = Despesa.CarregarDades();
+            dgvDespeses.DataSource = Despesa.CarregarDades(txtUsuari.Text);
             FormatCostColumn();
         }
 
@@ -68,8 +80,8 @@ namespace ProjecteCobolDavid
 
             try
             {
-                Despesa.BorrarDat();
-                dgvDespeses.DataSource = Despesa.CarregarDades();
+                Despesa.BorrarDat(txtUsuari.Text);
+                dgvDespeses.DataSource = Despesa.CarregarDades(txtUsuari.Text);
                 FormatCostColumn();
                 MessageBox.Show("DESPESES.DAT s'ha esborrat correctament.", "Fet", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -83,9 +95,19 @@ namespace ProjecteCobolDavid
         {
             try
             {
-                var datos = Despesa.CarregarDades();
+                // Obtenim les dades que hi ha actualment al DataGridView
+                var datosFiltrats = dgvDespeses.DataSource as List<Despesa>;
+
+                // Verifiquem que hi hagi dades per mostrar
+                if (datosFiltrats == null || datosFiltrats.Count == 0)
+                {
+                    MessageBox.Show("No hi ha dades filtrades per mostrar a l'informe.", "Avís", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                // Creem l'informe passant només la llista filtrada
                 var f = new ReportForm();
-                f.LoadReport(datos);
+                f.LoadReport(datosFiltrats);
                 f.ShowDialog(this);
             }
             catch (Exception ex)
@@ -124,7 +146,7 @@ namespace ProjecteCobolDavid
 
             try
             {
-                var list = Despesa.CarregarDades();
+                var list = Despesa.CarregarDades(txtUsuari.Text);
                 var prop = typeof(Despesa).GetProperty(propName);
                 if (prop == null)
                 {
@@ -191,10 +213,10 @@ namespace ProjecteCobolDavid
             try
             {
                 // Cridem al mètode per esborrar la despesa específica (nom + cost + data)
-                Despesa.EsborrarDespesa(nomDespesa, costDespesa, dataDespesa);
+                Despesa.EsborrarDespesa(nomDespesa, costDespesa, dataDespesa, txtUsuari.Text);
 
                 // Recarreguem el DataGridView
-                dgvDespeses.DataSource = Despesa.CarregarDades();
+                AplicarFiltreTemporal();
                 FormatCostColumn();
 
                 MessageBox.Show("Despesa esborrada correctament.", "Fet", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -202,6 +224,35 @@ namespace ProjecteCobolDavid
             catch (Exception ex)
             {
                 MessageBox.Show("Error esborrant la despesa:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void AplicarFiltreTemporal()
+        {
+            // Si no hi ha usuari, netegem la graella i sortim
+            if (string.IsNullOrWhiteSpace(txtUsuari.Text))
+            {
+                dgvDespeses.DataSource = null;
+                return;
+            }
+
+            int mes = cmbMes.SelectedIndex + 1;
+            int any = (int)numAny.Value;
+
+            if (mes <= 0) return;
+
+            try
+            {
+                var dadesFiltrades = Despesa.CarregarDadesPerMes(txtUsuari.Text, mes, any);
+
+                // Forcem el refresc total del DataSource
+                dgvDespeses.DataSource = null;
+                dgvDespeses.DataSource = dadesFiltrades;
+
+                FormatCostColumn();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error filtrant dades: " + ex.Message);
             }
         }
     }

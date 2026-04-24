@@ -42,8 +42,13 @@
             lblData = new Label();
             lblTipus = new Label();
             btnEsborrar1 = new Button();
+            txtUsuari = new TextBox();
+            label1 = new Label();
+            cmbMes = new ComboBox();
+            numAny = new NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)numCost).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvDespeses).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numAny).BeginInit();
             SuspendLayout();
             // 
             // btnGuardar
@@ -58,7 +63,7 @@
             // 
             // txtNom
             // 
-            txtNom.Location = new Point(71, 12);
+            txtNom.Location = new Point(262, 12);
             txtNom.Name = "txtNom";
             txtNom.Size = new Size(120, 23);
             txtNom.TabIndex = 1;
@@ -67,7 +72,7 @@
             // 
             numCost.DecimalPlaces = 2;
             numCost.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
-            numCost.Location = new Point(71, 46);
+            numCost.Location = new Point(73, 43);
             numCost.Maximum = new decimal(new int[] { 999999999, 0, 0, 0 });
             numCost.Name = "numCost";
             numCost.Size = new Size(120, 23);
@@ -75,7 +80,7 @@
             // 
             // dtpData
             // 
-            dtpData.Location = new Point(248, 12);
+            dtpData.Location = new Point(262, 43);
             dtpData.Name = "dtpData";
             dtpData.Size = new Size(120, 23);
             dtpData.TabIndex = 3;
@@ -130,7 +135,7 @@
             // lblNom
             // 
             lblNom.AutoSize = true;
-            lblNom.Location = new Point(12, 15);
+            lblNom.Location = new Point(209, 15);
             lblNom.Name = "lblNom";
             lblNom.Size = new Size(53, 15);
             lblNom.TabIndex = 7;
@@ -139,7 +144,7 @@
             // lblCost
             // 
             lblCost.AutoSize = true;
-            lblCost.Location = new Point(12, 48);
+            lblCost.Location = new Point(39, 45);
             lblCost.Name = "lblCost";
             lblCost.Size = new Size(34, 15);
             lblCost.TabIndex = 8;
@@ -148,7 +153,7 @@
             // lblData
             // 
             lblData.AutoSize = true;
-            lblData.Location = new Point(208, 15);
+            lblData.Location = new Point(228, 45);
             lblData.Name = "lblData";
             lblData.Size = new Size(34, 15);
             lblData.TabIndex = 9;
@@ -157,7 +162,7 @@
             // lblTipus
             // 
             lblTipus.AutoSize = true;
-            lblTipus.Location = new Point(388, 15);
+            lblTipus.Location = new Point(397, 15);
             lblTipus.Name = "lblTipus";
             lblTipus.Size = new Size(38, 15);
             lblTipus.TabIndex = 10;
@@ -173,11 +178,50 @@
             btnEsborrar1.UseVisualStyleBackColor = true;
             btnEsborrar1.Click += btnEsborrar1_Click;
             // 
+            // txtUsuari
+            // 
+            txtUsuari.Location = new Point(73, 12);
+            txtUsuari.Name = "txtUsuari";
+            txtUsuari.Size = new Size(120, 23);
+            txtUsuari.TabIndex = 14;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(30, 15);
+            label1.Name = "label1";
+            label1.Size = new Size(43, 15);
+            label1.TabIndex = 15;
+            label1.Text = "Usuari:";
+            // 
+            // cmbMes
+            // 
+            cmbMes.FormattingEnabled = true;
+            cmbMes.Items.AddRange(new object[] { "Gener", "Febrer", "Març", "Abril", "Maig", "Juny", "Juliol", "Agost", "Setembre", "Octubre", "Novembre", "Desembre" });
+            cmbMes.Location = new Point(24, 309);
+            cmbMes.Name = "cmbMes";
+            cmbMes.Size = new Size(121, 23);
+            cmbMes.TabIndex = 16;
+            // 
+            // numAny
+            // 
+            numAny.Location = new Point(170, 309);
+            numAny.Maximum = new decimal(new int[] { 2100, 0, 0, 0 });
+            numAny.Minimum = new decimal(new int[] { 2000, 0, 0, 0 });
+            numAny.Name = "numAny";
+            numAny.Size = new Size(120, 23);
+            numAny.TabIndex = 17;
+            numAny.Value = new decimal(new int[] { 2026, 0, 0, 0 });
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(601, 305);
+            ClientSize = new Size(601, 356);
+            Controls.Add(numAny);
+            Controls.Add(cmbMes);
+            Controls.Add(label1);
+            Controls.Add(txtUsuari);
             Controls.Add(btnEsborrar1);
             Controls.Add(lblTipus);
             Controls.Add(lblData);
@@ -196,6 +240,7 @@
             Text = "EconoParse";
             ((System.ComponentModel.ISupportInitialize)numCost).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvDespeses).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numAny).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -216,5 +261,9 @@
         private Label lblData;
         private Label lblTipus;
         private Button btnEsborrar1;
+        private TextBox txtUsuari;
+        private Label label1;
+        private ComboBox cmbMes;
+        private NumericUpDown numAny;
     }
 }

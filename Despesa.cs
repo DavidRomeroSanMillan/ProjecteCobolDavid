@@ -17,17 +17,23 @@ namespace ProjecteCobolDavid
         public DateTime Data { get; set; }
         // Max 20
         public string Tipus { get; set; }
-
-        public static void EnviarACobol(Despesa d)
+        private static string ObtenirPathUsuari(string usuari)
+        {
+            if (string.IsNullOrWhiteSpace(usuari)) return "DESPESES.DAT";
+            return $"DESPESES_{usuari.ToUpper().Trim()}.DAT";
+        }
+        public static void EnviarACobol(Despesa d, string usuari)
         {
             // Formatem les dades per tenir la longitud fixa que COBOL espera
+            string pathUsuari = ObtenirPathUsuari(usuari);
+
             string nomFix = d.Nom.PadRight(30).Substring(0, 30);
             string costFix = d.Cost.ToString("0.00", CultureInfo.InvariantCulture);
             string dataFix = d.Data.ToString("yyyy-MM-dd");
             string tipusFix = d.Tipus.PadRight(20).Substring(0, 20);
-            string arguments = $"\"{nomFix}\" \"{costFix}\" \"{dataFix}\" \"{tipusFix}\"";
 
-            
+            // Afegim el pathUsuari com a 5è argument per al COBOL
+            string arguments = $"\"{nomFix}\" \"{costFix}\" \"{dataFix}\" \"{tipusFix}\" \"{pathUsuari}\"";
 
             ProcessStartInfo startInfo = new ProcessStartInfo
             {
@@ -62,13 +68,12 @@ namespace ProjecteCobolDavid
             }
             catch { }
         }
-        public static List<Despesa> CarregarDades()
+        public static List<Despesa> CarregarDades(string usuari)
         {
             var llista = new List<Despesa>();
-            string path = "DESPESES.DAT";
+            string path = ObtenirPathUsuari(usuari); // Llegim el fitxer de l'usuari
 
             if (!File.Exists(path)) return llista;
-
             var linies = File.ReadAllLines(path);
 
             foreach (var linia in linies)
@@ -123,11 +128,19 @@ namespace ProjecteCobolDavid
             }
             return llista;
         }
+        public static List<Despesa> CarregarDadesPerMes(string usuari, int mes, int any)
+        {
+            // Reutilitzem el mètode existent per carregar-ho tot
+            var totes = CarregarDades(usuari);
+
+            // Filtrem usant LINQ
+            return totes.Where(d => d.Data.Month == mes && d.Data.Year == any).ToList();
+        }
 
         // Esborra tot el contingut del fitxer .dat
-        public static void BorrarDat()
+        public static void BorrarDat(string usuari)
         {
-            string path = "DESPESES.DAT";
+            string path = ObtenirPathUsuari(usuari);
             try
             {
                 // Si existeix, trunquem el fitxer a 0 bytes
@@ -149,9 +162,9 @@ namespace ProjecteCobolDavid
         }
 
         // Esborra una despesa específica que coincideix amb Nom, Cost i Data
-        public static void EsborrarDespesa(string nom, decimal cost, DateTime data)
+        public static void EsborrarDespesa(string nom, decimal cost, DateTime data, string usuari)
         {
-            string path = "DESPESES.DAT";
+            string path = ObtenirPathUsuari(usuari);
             try
             {
                 if (!File.Exists(path)) return;
