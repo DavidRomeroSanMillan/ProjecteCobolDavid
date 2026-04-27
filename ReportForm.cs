@@ -31,6 +31,14 @@ namespace ProjecteCobolDavid
             var rds = new ReportDataSource("DataSet1", datos);
             rpv.LocalReport.DataSources.Add(rds);
 
+            var estadisticas = Despesa.CalcularEstadisticas(datos);
+            var estadisticasDs = new ReportDataSource("EstadisticasDataSet", 
+                new List<EstadisticaResultado> { estadisticas });
+            rpv.LocalReport.DataSources.Add(estadisticasDs);
+
+            var top3Ds = new ReportDataSource("Top3DataSet", estadisticas.Top3Gastos);
+            rpv.LocalReport.DataSources.Add(top3Ds);
+
             rpv.RefreshReport();
         }
     }

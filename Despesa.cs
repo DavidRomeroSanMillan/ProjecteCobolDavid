@@ -223,5 +223,34 @@ namespace ProjecteCobolDavid
                 throw;
             }
         }
+
+        public static EstadisticaResultado CalcularEstadisticas(List<Despesa> dades)
+        {
+            var resultado = new EstadisticaResultado();
+
+            if (dades == null || dades.Count == 0)
+            {
+                resultado.MediaGastos = 0m;
+                return resultado;
+            }
+
+            decimal totalGastos = dades.Sum(d => d.Cost);
+            resultado.MediaGastos = totalGastos / dades.Count;
+
+            var gastosPorTipo = dades
+                .GroupBy(d => d.Tipus.Trim())
+                .Select(g => new Top3Gasto 
+                { 
+                    Tipus = g.Key, 
+                    TotalGasto = g.Sum(d => d.Cost) 
+                })
+                .OrderByDescending(t => t.TotalGasto)
+                .Take(3)
+                .ToList();
+
+            resultado.Top3Gastos = gastosPorTipo;
+
+            return resultado;
+        }
     }
 }

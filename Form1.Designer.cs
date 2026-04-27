@@ -46,6 +46,8 @@
             label1 = new Label();
             cmbMes = new ComboBox();
             numAny = new NumericUpDown();
+            textBox1 = new TextBox();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)numCost).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvDespeses).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numAny).BeginInit();
@@ -53,7 +55,7 @@
             // 
             // btnGuardar
             // 
-            btnGuardar.Location = new Point(499, 48);
+            btnGuardar.Location = new Point(499, 76);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(87, 48);
             btnGuardar.TabIndex = 0;
@@ -105,7 +107,7 @@
             // 
             // btnActualitzar
             // 
-            btnActualitzar.Location = new Point(499, 156);
+            btnActualitzar.Location = new Point(499, 184);
             btnActualitzar.Name = "btnActualitzar";
             btnActualitzar.Size = new Size(87, 48);
             btnActualitzar.TabIndex = 6;
@@ -115,7 +117,7 @@
             // 
             // btnBorrarDat
             // 
-            btnBorrarDat.Location = new Point(499, 270);
+            btnBorrarDat.Location = new Point(499, 298);
             btnBorrarDat.Name = "btnBorrarDat";
             btnBorrarDat.Size = new Size(90, 23);
             btnBorrarDat.TabIndex = 11;
@@ -125,7 +127,7 @@
             // 
             // btnMostrarInforme
             // 
-            btnMostrarInforme.Location = new Point(499, 210);
+            btnMostrarInforme.Location = new Point(499, 238);
             btnMostrarInforme.Name = "btnMostrarInforme";
             btnMostrarInforme.Size = new Size(90, 54);
             btnMostrarInforme.TabIndex = 12;
@@ -170,7 +172,7 @@
             // 
             // btnEsborrar1
             // 
-            btnEsborrar1.Location = new Point(499, 102);
+            btnEsborrar1.Location = new Point(499, 130);
             btnEsborrar1.Name = "btnEsborrar1";
             btnEsborrar1.Size = new Size(87, 48);
             btnEsborrar1.TabIndex = 13;
@@ -198,14 +200,14 @@
             // 
             cmbMes.FormattingEnabled = true;
             cmbMes.Items.AddRange(new object[] { "Gener", "Febrer", "Març", "Abril", "Maig", "Juny", "Juliol", "Agost", "Setembre", "Octubre", "Novembre", "Desembre" });
-            cmbMes.Location = new Point(24, 309);
+            cmbMes.Location = new Point(24, 298);
             cmbMes.Name = "cmbMes";
             cmbMes.Size = new Size(121, 23);
             cmbMes.TabIndex = 16;
             // 
             // numAny
             // 
-            numAny.Location = new Point(170, 309);
+            numAny.Location = new Point(170, 298);
             numAny.Maximum = new decimal(new int[] { 2100, 0, 0, 0 });
             numAny.Minimum = new decimal(new int[] { 2000, 0, 0, 0 });
             numAny.Name = "numAny";
@@ -213,11 +215,29 @@
             numAny.TabIndex = 17;
             numAny.Value = new decimal(new int[] { 2026, 0, 0, 0 });
             // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(372, 297);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(121, 23);
+            textBox1.TabIndex = 18;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(334, 300);
+            label2.Name = "label2";
+            label2.Size = new Size(35, 15);
+            label2.TabIndex = 19;
+            label2.Text = "Total:";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(601, 356);
+            Controls.Add(label2);
+            Controls.Add(textBox1);
             Controls.Add(numAny);
             Controls.Add(cmbMes);
             Controls.Add(label1);
@@ -265,5 +285,7 @@
         private Label label1;
         private ComboBox cmbMes;
         private NumericUpDown numAny;
+        private TextBox textBox1;
+        private Label label2;
     }
 }
