@@ -422,8 +422,8 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>DataSet1</DataSetName>
-            <Top>1.45203cm</Top>
-            <Left>1.18745cm</Left>
+            <Top>6.32792cm</Top>
+            <Left>0.92287cm</Left>
             <Height>5cm</Height>
             <Width>7.5cm</Width>
             <Style>
@@ -435,6 +435,124 @@
               <BackgroundGradientType>None</BackgroundGradientType>
             </Style>
           </Chart>
+          <Textbox Name="TitleEstadisticas">
+            <CanGrow>true</CanGrow>
+            <CanShrink>true</CanShrink>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>ESTADÍSTIQUES</Value>
+                    <Style>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                      <Color>#333333</Color>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>TitleEstadisticas</rd:DefaultName>
+            <Top>0.3122cm</Top>
+            <Left>0.3559cm</Left>
+            <Height>0.6cm</Height>
+            <Width>16.66255cm</Width>
+            <ZIndex>1</ZIndex>
+            <Style />
+          </Textbox>
+          <Textbox Name="MediaLabel">
+            <CanGrow>true</CanGrow>
+            <CanShrink>true</CanShrink>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Mitjana de Despeses:</Value>
+                    <Style>
+                      <FontWeight>Normal</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>MediaLabel</rd:DefaultName>
+            <Top>1.45203cm</Top>
+            <Left>0.3559cm</Left>
+            <Height>0.5cm</Height>
+            <Width>5cm</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Color>#cccccc</Color>
+                <Style>Solid</Style>
+              </Border>
+              <BackgroundColor>#f0f0f0</BackgroundColor>
+              <PaddingLeft>0.2cm</PaddingLeft>
+              <PaddingRight>0.2cm</PaddingRight>
+            </Style>
+          </Textbox>
+          <Textbox Name="MediaValue">
+            <CanGrow>true</CanGrow>
+            <CanShrink>true</CanShrink>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Format(First(Fields!MediaGastos.Value,"EstadisticasDataSet"),"C2")</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                      <Color>#0070c0</Color>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Right</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>MediaValue</rd:DefaultName>
+            <Top>1.45203cm</Top>
+            <Left>5.46845cm</Left>
+            <Height>0.5cm</Height>
+            <Width>4cm</Width>
+            <ZIndex>3</ZIndex>
+            <Style>
+              <Border>
+                <Color>#0070c0</Color>
+                <Style>Solid</Style>
+              </Border>
+              <BackgroundColor>#e8f4f8</BackgroundColor>
+              <PaddingLeft>0.2cm</PaddingLeft>
+              <PaddingRight>0.2cm</PaddingRight>
+            </Style>
+          </Textbox>
+          <Textbox Name="Top3Label">
+            <CanGrow>true</CanGrow>
+            <CanShrink>true</CanShrink>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Top 3 Tipus amb Despeses Més Grans:</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                      <Color>#333333</Color>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Top3Label</rd:DefaultName>
+            <Top>2.15203cm</Top>
+            <Left>0.3559cm</Left>
+            <Height>0.5cm</Height>
+            <Width>16.66255cm</Width>
+            <ZIndex>4</ZIndex>
+            <Style />
+          </Textbox>
           <Chart Name="Chart2">
             <ChartCategoryHierarchy>
               <ChartMembers>
@@ -781,11 +899,11 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>DataSet1</DataSetName>
-            <Top>1.45203cm</Top>
-            <Left>10.34203cm</Left>
+            <Top>6.32792cm</Top>
+            <Left>9.85066cm</Left>
             <Height>5cm</Height>
             <Width>7.5cm</Width>
-            <ZIndex>1</ZIndex>
+            <ZIndex>5</ZIndex>
             <Style>
               <Border>
                 <Color>LightGrey</Color>
@@ -795,271 +913,187 @@
               <BackgroundGradientType>None</BackgroundGradientType>
             </Style>
           </Chart>
-          <Textbox Name="TitleEstadisticas">
-            <CanGrow>true</CanGrow>
-            <CanShrink>true</CanShrink>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>ESTADÍSTICAS</Value>
-                    <Style>
-                      <FontSize>12pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                      <Color>#333333</Color>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>TitleEstadisticas</rd:DefaultName>
-            <Top>6.7cm</Top>
-            <Left>1.18745cm</Left>
-            <Height>0.6cm</Height>
-            <Width>16.66255cm</Width>
-          </Textbox>
-          <Textbox Name="MediaLabel">
-            <CanGrow>true</CanGrow>
-            <CanShrink>true</CanShrink>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Media de Gastos:</Value>
-                    <Style>
-                      <FontSize>10pt</FontSize>
-                      <FontWeight>Normal</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>MediaLabel</rd:DefaultName>
-            <Top>7.5cm</Top>
-            <Left>1.18745cm</Left>
-            <Height>0.5cm</Height>
-            <Width>5cm</Width>
+          <Tablix Name="Top3Table">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>3cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>3cm</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.6cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Header_Tipus">
+                          <CanGrow>true</CanGrow>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Tipus</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Color>#000000</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>#0070c0</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Header_Total">
+                          <CanGrow>true</CanGrow>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Total Despesa</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Color>#000000</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>#0070c0</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.6cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Cell_Tipus">
+                          <CanGrow>true</CanGrow>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Tipus.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Color>#cccccc</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Cell_Total">
+                          <CanGrow>true</CanGrow>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Format(Fields!TotalGasto.Value,"C2")</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Color>#cccccc</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <KeepWithGroup>After</KeepWithGroup>
+                </TablixMember>
+                <TablixMember>
+                  <Group Name="Details" />
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>Top3DataSet</DataSetName>
+            <Top>2.75203cm</Top>
+            <Left>0.3559cm</Left>
+            <Height>1.2cm</Height>
+            <Width>6cm</Width>
+            <ZIndex>6</ZIndex>
             <Style>
-              <BackgroundColor>#f0f0f0</BackgroundColor>
               <Border>
                 <Color>#cccccc</Color>
                 <Style>Solid</Style>
-                <Width>1pt</Width>
               </Border>
-              <PaddingLeft>0.2cm</PaddingLeft>
-              <PaddingRight>0.2cm</PaddingRight>
+              <BackgroundColor>White</BackgroundColor>
             </Style>
-          </Textbox>
-          <Textbox Name="MediaValue">
-            <CanGrow>true</CanGrow>
-            <CanShrink>true</CanShrink>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Format(First(Fields!MediaGastos.Value,"EstadisticasDataSet"),"C2")</Value>
-                    <Style>
-                      <FontSize>10pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                      <Color>#0070C0</Color>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Right</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>MediaValue</rd:DefaultName>
-            <Top>7.5cm</Top>
-            <Left>6.3cm</Left>
-            <Height>0.5cm</Height>
-            <Width>4cm</Width>
-            <Style>
-              <BackgroundColor>#e8f4f8</BackgroundColor>
-              <Border>
-                <Color>#0070C0</Color>
-                <Style>Solid</Style>
-                <Width>1pt</Width>
-              </Border>
-              <PaddingLeft>0.2cm</PaddingLeft>
-              <PaddingRight>0.2cm</PaddingRight>
-            </Style>
-          </Textbox>
-          <Textbox Name="Top3Label">
-            <CanGrow>true</CanGrow>
-            <CanShrink>true</CanShrink>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Top 3 Tipos con Mayor Gasto:</Value>
-                    <Style>
-                      <FontSize>10pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                      <Color>#333333</Color>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Top3Label</rd:DefaultName>
-            <Top>8.2cm</Top>
-            <Left>1.18745cm</Left>
-            <Height>0.5cm</Height>
-            <Width>16.66255cm</Width>
-          </Textbox>
-<Tablix Name="Top3Table">
-  <TablixBody>
-    <TablixColumns>
-      <TablixColumn>
-        <Width>3cm</Width>
-      </TablixColumn>
-      <TablixColumn>
-        <Width>3cm</Width>
-      </TablixColumn>
-    </TablixColumns>
-    <TablixRows>
-      <TablixRow>
-        <Height>0.6cm</Height>
-        <TablixCells>
-          <TablixCell>
-            <CellContents>
-              <Textbox Name="Header_Tipus">
-                <CanGrow>true</CanGrow>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>Tipo</Value>
-                        <Style>
-                          <FontWeight>Bold</FontWeight>
-                          <Color>White</Color>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style><TextAlign>Center</TextAlign></Style>
-                  </Paragraph>
-                </Paragraphs>
-                <Style>
-                  <BackgroundColor>#0070C0</BackgroundColor>
-                  <Border><Color>#000000</Color><Style>Solid</Style></Border>
-                  <PaddingLeft>2pt</PaddingLeft><PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop><PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
-            </CellContents>
-          </TablixCell>
-          <TablixCell>
-            <CellContents>
-              <Textbox Name="Header_Total">
-                <CanGrow>true</CanGrow>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>Total Gasto</Value>
-                        <Style>
-                          <FontWeight>Bold</FontWeight>
-                          <Color>White</Color>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style><TextAlign>Center</TextAlign></Style>
-                  </Paragraph>
-                </Paragraphs>
-                <Style>
-                  <BackgroundColor>#0070C0</BackgroundColor>
-                  <Border><Color>#000000</Color><Style>Solid</Style></Border>
-                  <PaddingLeft>2pt</PaddingLeft><PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop><PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
-            </CellContents>
-          </TablixCell>
-        </TablixCells>
-      </TablixRow>
-      <TablixRow>
-        <Height>0.6cm</Height>
-        <TablixCells>
-          <TablixCell>
-            <CellContents>
-              <Textbox Name="Cell_Tipus">
-                <CanGrow>true</CanGrow>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>=Fields!Tipus.Value</Value>
-                        <Style />
-                      </TextRun>
-                    </TextRuns>
-                  </Paragraph>
-                </Paragraphs>
-                <Style>
-                  <Border><Color>#cccccc</Color><Style>Solid</Style></Border>
-                  <PaddingLeft>2pt</PaddingLeft><PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop><PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
-            </CellContents>
-          </TablixCell>
-          <TablixCell>
-            <CellContents>
-              <Textbox Name="Cell_Total">
-                <CanGrow>true</CanGrow>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>=Format(Fields!TotalGasto.Value,"C2")</Value>
-                        <Style />
-                      </TextRun>
-                    </TextRuns>
-                    <Style><TextAlign>Right</TextAlign></Style>
-                  </Paragraph>
-                </Paragraphs>
-                <Style>
-                  <Border><Color>#cccccc</Color><Style>Solid</Style></Border>
-                  <PaddingLeft>2pt</PaddingLeft><PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop><PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
-            </CellContents>
-          </TablixCell>
-        </TablixCells>
-      </TablixRow>
-    </TablixRows>
-  </TablixBody>
-  <TablixRowHierarchy>
-    <TablixMembers>
-      <TablixMember>
-        <KeepWithGroup>After</KeepWithGroup>
-      </TablixMember>
-      <TablixMember>
-        <Group Name="Details" />
-      </TablixMember>
-    </TablixMembers>
-  </TablixRowHierarchy>
-  <TablixColumnHierarchy>
-    <TablixMembers>
-      <TablixMember />
-      <TablixMember />
-    </TablixMembers>
-  </TablixColumnHierarchy>
-  <DataSetName>Top3DataSet</DataSetName>
-  <Top>8.8cm</Top>
-  <Left>1.18745cm</Left>
-  <Height>1.5cm</Height>
-  <Width>6cm</Width>
-  <ZIndex>2</ZIndex>
-  <Style>
-    <Border><Color>#cccccc</Color><Style>Solid</Style><Width>1pt</Width></Border>
-    <BackgroundColor>White</BackgroundColor>
-  </Style>
-</Tablix>
+          </Tablix>
         </ReportItems>
-        <Height>3.63392in</Height>
+        <Height>6.33481in</Height>
         <Style />
       </Body>
       <Width>7.84734in</Width>

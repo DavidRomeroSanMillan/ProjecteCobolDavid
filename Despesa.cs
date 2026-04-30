@@ -28,7 +28,7 @@ namespace ProjecteCobolDavid
             string pathUsuari = ObtenirPathUsuari(usuari);
 
             string nomFix = d.Nom.PadRight(30).Substring(0, 30);
-            string costFix = d.Cost.ToString("0.00", CultureInfo.InvariantCulture);
+            string costFix = ((int)(d.Cost * 100)).ToString("D8");
             string dataFix = d.Data.ToString("yyyy-MM-dd");
             string tipusFix = d.Tipus.PadRight(20).Substring(0, 20);
 
@@ -235,7 +235,7 @@ namespace ProjecteCobolDavid
             // 1. Executem l'executable COBOL compilat (estadi.exe) passant-li el nom del fitxer
             ProcessStartInfo startInfo = new ProcessStartInfo
             {
-                FileName = "estadi.exe", // Assegura't de tenir l'executable del COBOL compilat a la carpeta bin
+                FileName = "estadi.exe", 
                 Arguments = $"\"{pathUsuari}\"",
                 UseShellExecute = false,
                 CreateNoWindow = true
@@ -256,7 +256,7 @@ namespace ProjecteCobolDavid
                     // La primera línia és la mitjana
                     if (decimal.TryParse(linies[0].Trim(), NumberStyles.Any, CultureInfo.InvariantCulture, out decimal media))
                     {
-                        resultado.MediaGastos = media;
+                        resultado.MediaGastos = media / 100m;
                     }
 
                     // Les següents línies són el Top 3 (separades per | com vam definir al COBOL)
@@ -271,7 +271,7 @@ namespace ProjecteCobolDavid
                                 resultado.Top3Gastos.Add(new Top3Gasto
                                 {
                                     Tipus = parts[0].Trim(),
-                                    TotalGasto = totalCents / 100m // O ajusta-ho si el COBOL ja retorna decimals
+                                    TotalGasto = totalCents / 100m 
                                 });
                             }
                         }
