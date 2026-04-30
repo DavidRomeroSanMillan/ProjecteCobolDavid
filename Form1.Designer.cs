@@ -48,14 +48,16 @@
             numAny = new NumericUpDown();
             textBox1 = new TextBox();
             label2 = new Label();
+            pbLogo = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)numCost).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvDespeses).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numAny).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbLogo).BeginInit();
             SuspendLayout();
             // 
             // btnGuardar
             // 
-            btnGuardar.Location = new Point(499, 76);
+            btnGuardar.Location = new Point(499, 167);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(87, 48);
             btnGuardar.TabIndex = 0;
@@ -65,7 +67,7 @@
             // 
             // txtNom
             // 
-            txtNom.Location = new Point(262, 12);
+            txtNom.Location = new Point(262, 103);
             txtNom.Name = "txtNom";
             txtNom.Size = new Size(120, 23);
             txtNom.TabIndex = 1;
@@ -74,7 +76,7 @@
             // 
             numCost.DecimalPlaces = 2;
             numCost.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
-            numCost.Location = new Point(73, 43);
+            numCost.Location = new Point(73, 134);
             numCost.Maximum = new decimal(new int[] { 999999999, 0, 0, 0 });
             numCost.Name = "numCost";
             numCost.Size = new Size(120, 23);
@@ -82,7 +84,7 @@
             // 
             // dtpData
             // 
-            dtpData.Location = new Point(262, 43);
+            dtpData.Location = new Point(262, 134);
             dtpData.Name = "dtpData";
             dtpData.Size = new Size(120, 23);
             dtpData.TabIndex = 3;
@@ -91,7 +93,7 @@
             // 
             cmbTipus.FormattingEnabled = true;
             cmbTipus.Items.AddRange(new object[] { "Compra", "Despeses llar", "Alquiler/Hipoteca", "Oci", "Factures", "Roba", "Salut", "Transport", "Educació", "Manteniment", "Tecnologia", "Altres" });
-            cmbTipus.Location = new Point(435, 12);
+            cmbTipus.Location = new Point(435, 103);
             cmbTipus.Name = "cmbTipus";
             cmbTipus.Size = new Size(121, 23);
             cmbTipus.TabIndex = 4;
@@ -99,7 +101,7 @@
             // dgvDespeses
             // 
             dgvDespeses.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvDespeses.Location = new Point(24, 77);
+            dgvDespeses.Location = new Point(24, 168);
             dgvDespeses.Name = "dgvDespeses";
             dgvDespeses.ReadOnly = true;
             dgvDespeses.Size = new Size(469, 216);
@@ -107,7 +109,7 @@
             // 
             // btnActualitzar
             // 
-            btnActualitzar.Location = new Point(499, 184);
+            btnActualitzar.Location = new Point(499, 275);
             btnActualitzar.Name = "btnActualitzar";
             btnActualitzar.Size = new Size(87, 48);
             btnActualitzar.TabIndex = 6;
@@ -117,7 +119,7 @@
             // 
             // btnBorrarDat
             // 
-            btnBorrarDat.Location = new Point(499, 298);
+            btnBorrarDat.Location = new Point(499, 389);
             btnBorrarDat.Name = "btnBorrarDat";
             btnBorrarDat.Size = new Size(90, 23);
             btnBorrarDat.TabIndex = 11;
@@ -127,7 +129,7 @@
             // 
             // btnMostrarInforme
             // 
-            btnMostrarInforme.Location = new Point(499, 238);
+            btnMostrarInforme.Location = new Point(499, 329);
             btnMostrarInforme.Name = "btnMostrarInforme";
             btnMostrarInforme.Size = new Size(90, 54);
             btnMostrarInforme.TabIndex = 12;
@@ -137,7 +139,7 @@
             // lblNom
             // 
             lblNom.AutoSize = true;
-            lblNom.Location = new Point(209, 15);
+            lblNom.Location = new Point(209, 106);
             lblNom.Name = "lblNom";
             lblNom.Size = new Size(53, 15);
             lblNom.TabIndex = 7;
@@ -146,7 +148,7 @@
             // lblCost
             // 
             lblCost.AutoSize = true;
-            lblCost.Location = new Point(39, 45);
+            lblCost.Location = new Point(39, 136);
             lblCost.Name = "lblCost";
             lblCost.Size = new Size(34, 15);
             lblCost.TabIndex = 8;
@@ -155,7 +157,7 @@
             // lblData
             // 
             lblData.AutoSize = true;
-            lblData.Location = new Point(228, 45);
+            lblData.Location = new Point(228, 136);
             lblData.Name = "lblData";
             lblData.Size = new Size(34, 15);
             lblData.TabIndex = 9;
@@ -164,7 +166,7 @@
             // lblTipus
             // 
             lblTipus.AutoSize = true;
-            lblTipus.Location = new Point(397, 15);
+            lblTipus.Location = new Point(397, 106);
             lblTipus.Name = "lblTipus";
             lblTipus.Size = new Size(38, 15);
             lblTipus.TabIndex = 10;
@@ -172,7 +174,7 @@
             // 
             // btnEsborrar1
             // 
-            btnEsborrar1.Location = new Point(499, 130);
+            btnEsborrar1.Location = new Point(499, 221);
             btnEsborrar1.Name = "btnEsborrar1";
             btnEsborrar1.Size = new Size(87, 48);
             btnEsborrar1.TabIndex = 13;
@@ -182,7 +184,7 @@
             // 
             // txtUsuari
             // 
-            txtUsuari.Location = new Point(73, 12);
+            txtUsuari.Location = new Point(73, 103);
             txtUsuari.Name = "txtUsuari";
             txtUsuari.Size = new Size(120, 23);
             txtUsuari.TabIndex = 14;
@@ -190,7 +192,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(30, 15);
+            label1.Location = new Point(30, 106);
             label1.Name = "label1";
             label1.Size = new Size(43, 15);
             label1.TabIndex = 15;
@@ -200,14 +202,14 @@
             // 
             cmbMes.FormattingEnabled = true;
             cmbMes.Items.AddRange(new object[] { "Gener", "Febrer", "Març", "Abril", "Maig", "Juny", "Juliol", "Agost", "Setembre", "Octubre", "Novembre", "Desembre" });
-            cmbMes.Location = new Point(24, 298);
+            cmbMes.Location = new Point(24, 389);
             cmbMes.Name = "cmbMes";
             cmbMes.Size = new Size(121, 23);
             cmbMes.TabIndex = 16;
             // 
             // numAny
             // 
-            numAny.Location = new Point(170, 298);
+            numAny.Location = new Point(170, 389);
             numAny.Maximum = new decimal(new int[] { 2100, 0, 0, 0 });
             numAny.Minimum = new decimal(new int[] { 2000, 0, 0, 0 });
             numAny.Name = "numAny";
@@ -217,7 +219,7 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(372, 297);
+            textBox1.Location = new Point(372, 388);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(121, 23);
             textBox1.TabIndex = 18;
@@ -225,17 +227,29 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(334, 300);
+            label2.Location = new Point(334, 391);
             label2.Name = "label2";
             label2.Size = new Size(35, 15);
             label2.TabIndex = 19;
             label2.Text = "Total:";
             // 
+            // pbLogo
+            // 
+            pbLogo.Image = Properties.Resources.EconoParse;
+            pbLogo.InitialImage = null;
+            pbLogo.Location = new Point(154, 12);
+            pbLogo.Name = "pbLogo";
+            pbLogo.Size = new Size(339, 85);
+            pbLogo.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbLogo.TabIndex = 20;
+            pbLogo.TabStop = false;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(601, 356);
+            ClientSize = new Size(610, 428);
+            Controls.Add(pbLogo);
             Controls.Add(label2);
             Controls.Add(textBox1);
             Controls.Add(numAny);
@@ -261,6 +275,7 @@
             ((System.ComponentModel.ISupportInitialize)numCost).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvDespeses).EndInit();
             ((System.ComponentModel.ISupportInitialize)numAny).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbLogo).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -287,5 +302,6 @@
         private NumericUpDown numAny;
         private TextBox textBox1;
         private Label label2;
+        private PictureBox pbLogo;
     }
 }
