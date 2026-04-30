@@ -224,31 +224,60 @@ namespace ProjecteCobolDavid
             }
         }
 
-        public static EstadisticaResultado CalcularEstadisticas(List<Despesa> dades)
+        public static EstadisticaResultado CalcularEstadisticasCobol(string usuari)
         {
             var resultado = new EstadisticaResultado();
+            string pathUsuari = ObtenirPathUsuari(usuari);
 
-            if (dades == null || dades.Count == 0)
+            // Si no hi ha fitxer, retornem valors a 0
+            if (!File.Exists(pathUsuari)) return resultado;
+
+            // 1. Executem l'executable COBOL compilat (estadi.exe) passant-li el nom del fitxer
+            ProcessStartInfo startInfo = new ProcessStartInfo
             {
-                resultado.MediaGastos = 0m;
-                return resultado;
+                FileName = "estadi.exe", // Assegura't de tenir l'executable del COBOL compilat a la carpeta bin
+                Arguments = $"\"{pathUsuari}\"",
+                UseShellExecute = false,
+                CreateNoWindow = true
+            };
+
+            using (Process process = Process.Start(startInfo))
+            {
+                process.WaitForExit();
             }
 
-            decimal totalGastos = dades.Sum(d => d.Cost);
-            resultado.MediaGastos = totalGastos / dades.Count;
+            // 2. Llegim el fitxer .estad que ha generat el programa COBOL
+            string pathEstad = pathUsuari + ".estad";
+            if (File.Exists(pathEstad))
+            {
+                var linies = File.ReadAllLines(pathEstad);
+                if (linies.Length > 0)
+                {
+                    // La primera línia és la mitjana
+                    if (decimal.TryParse(linies[0].Trim(), NumberStyles.Any, CultureInfo.InvariantCulture, out decimal media))
+                    {
+                        resultado.MediaGastos = media;
+                    }
 
-            var gastosPorTipo = dades
-                .GroupBy(d => d.Tipus.Trim())
-                .Select(g => new Top3Gasto 
-                { 
-                    Tipus = g.Key, 
-                    TotalGasto = g.Sum(d => d.Cost) 
-                })
-                .OrderByDescending(t => t.TotalGasto)
-                .Take(3)
-                .ToList();
-
-            resultado.Top3Gastos = gastosPorTipo;
+                    // Les següents línies són el Top 3 (separades per | com vam definir al COBOL)
+                    for (int i = 1; i < linies.Length; i++)
+                    {
+                        var parts = linies[i].Split('|');
+                        if (parts.Length == 2)
+                        {
+                            // Al COBOL sumàvem els cèntims (PIC 9(8)), així que ho dividim entre 100 igual que a CarregarDades
+                            if (decimal.TryParse(parts[1].Trim(), out decimal totalCents))
+                            {
+                                resultado.Top3Gastos.Add(new Top3Gasto
+                                {
+                                    Tipus = parts[0].Trim(),
+                                    TotalGasto = totalCents / 100m // O ajusta-ho si el COBOL ja retorna decimals
+                                });
+                            }
+                        }
+                    }
+                }
+            }
 
             return resultado;
         }

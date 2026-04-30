@@ -107,7 +107,7 @@ namespace ProjecteCobolDavid
 
                 // Creem l'informe passant només la llista filtrada
                 var f = new ReportForm();
-                f.LoadReport(datosFiltrats);
+                f.LoadReport(datosFiltrats, txtUsuari.Text);
                 f.ShowDialog(this);
             }
             catch (Exception ex)

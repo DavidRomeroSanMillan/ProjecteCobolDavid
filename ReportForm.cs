@@ -19,7 +19,7 @@ namespace ProjecteCobolDavid
             this.WindowState = FormWindowState.Maximized;
         }
 
-        public void LoadReport(List<Despesa> datos)
+        public void LoadReport(List<Despesa> datos, string usuari)
         {
             rpv.Reset();
             rpv.ProcessingMode = ProcessingMode.Local;
@@ -31,7 +31,7 @@ namespace ProjecteCobolDavid
             var rds = new ReportDataSource("DataSet1", datos);
             rpv.LocalReport.DataSources.Add(rds);
 
-            var estadisticas = Despesa.CalcularEstadisticas(datos);
+            var estadisticas = Despesa.CalcularEstadisticasCobol(usuari);
             var estadisticasDs = new ReportDataSource("EstadisticasDataSet", 
                 new List<EstadisticaResultado> { estadisticas });
             rpv.LocalReport.DataSources.Add(estadisticasDs);
