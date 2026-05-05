@@ -422,8 +422,8 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>DataSet1</DataSetName>
-            <Top>6.32792cm</Top>
-            <Left>0.92287cm</Left>
+            <Top>5.53417cm</Top>
+            <Left>0.3559cm</Left>
             <Height>5cm</Height>
             <Width>7.5cm</Width>
             <Style>
@@ -899,8 +899,8 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>DataSet1</DataSetName>
-            <Top>6.32792cm</Top>
-            <Left>9.85066cm</Left>
+            <Top>5.53417cm</Top>
+            <Left>9.28369cm</Left>
             <Height>5cm</Height>
             <Width>7.5cm</Width>
             <ZIndex>5</ZIndex>
@@ -1111,7 +1111,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>TitleEstadisticas</rd:DefaultName>
-            <Top>5.39042cm</Top>
+            <Top>4.49083cm</Top>
             <Left>0.3559cm</Left>
             <Height>0.6cm</Height>
             <Width>16.66255cm</Width>
