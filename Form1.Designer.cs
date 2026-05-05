@@ -46,7 +46,7 @@
             label1 = new Label();
             cmbMes = new ComboBox();
             numAny = new NumericUpDown();
-            textBox1 = new TextBox();
+            txtTotal = new TextBox();
             label2 = new Label();
             pbLogo = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)numCost).BeginInit();
@@ -217,12 +217,12 @@
             numAny.TabIndex = 17;
             numAny.Value = new decimal(new int[] { 2026, 0, 0, 0 });
             // 
-            // textBox1
+            // txtTotal
             // 
-            textBox1.Location = new Point(372, 388);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(121, 23);
-            textBox1.TabIndex = 18;
+            txtTotal.Location = new Point(372, 388);
+            txtTotal.Name = "txtTotal";
+            txtTotal.Size = new Size(121, 23);
+            txtTotal.TabIndex = 18;
             // 
             // label2
             // 
@@ -251,7 +251,7 @@
             ClientSize = new Size(610, 428);
             Controls.Add(pbLogo);
             Controls.Add(label2);
-            Controls.Add(textBox1);
+            Controls.Add(txtTotal);
             Controls.Add(numAny);
             Controls.Add(cmbMes);
             Controls.Add(label1);
@@ -300,7 +300,7 @@
         private Label label1;
         private ComboBox cmbMes;
         private NumericUpDown numAny;
-        private TextBox textBox1;
+        private TextBox txtTotal;
         private Label label2;
         private PictureBox pbLogo;
     }

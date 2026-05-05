@@ -442,7 +442,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>ESTADÍSTIQUES</Value>
+                    <Value>ESTADÍSTIQUES TOTALS</Value>
                     <Style>
                       <FontSize>12pt</FontSize>
                       <FontWeight>Bold</FontWeight>
@@ -535,7 +535,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Top 3 Tipus amb Despeses Més Grans:</Value>
+                    <Value>Top 3 Tipus de Despeses més elevades:</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
                       <Color>#333333</Color>
@@ -869,7 +869,7 @@
             </ChartLegends>
             <ChartTitles>
               <ChartTitle Name="Default">
-                <Caption>Despeses al llarg del temps</Caption>
+                <Caption>Histograma mensual de despeses</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>9pt</FontSize>
@@ -1092,8 +1092,34 @@
               <BackgroundColor>White</BackgroundColor>
             </Style>
           </Tablix>
+          <Textbox Name="TitleEstadisticas2">
+            <CanGrow>true</CanGrow>
+            <CanShrink>true</CanShrink>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>ESTADÍSTIQUES MENSUALS</Value>
+                    <Style>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                      <Color>#333333</Color>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>TitleEstadisticas</rd:DefaultName>
+            <Top>5.39042cm</Top>
+            <Left>0.3559cm</Left>
+            <Height>0.6cm</Height>
+            <Width>16.66255cm</Width>
+            <ZIndex>7</ZIndex>
+            <Style />
+          </Textbox>
         </ReportItems>
-        <Height>6.33481in</Height>
+        <Height>7.41517in</Height>
         <Style />
       </Body>
       <Width>7.84734in</Width>
