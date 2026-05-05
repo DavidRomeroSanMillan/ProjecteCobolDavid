@@ -113,7 +113,7 @@
             btnActualitzar.Name = "btnActualitzar";
             btnActualitzar.Size = new Size(87, 48);
             btnActualitzar.TabIndex = 6;
-            btnActualitzar.Text = "Actualitzar llista";
+            btnActualitzar.Text = "Mostrar tot";
             btnActualitzar.UseVisualStyleBackColor = true;
             btnActualitzar.Click += btnActualitzar_Click;
             // 
