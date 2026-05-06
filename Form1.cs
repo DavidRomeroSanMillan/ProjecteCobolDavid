@@ -91,7 +91,7 @@ namespace ProjecteCobolDavid
         private void btnBorrarDat_Click(object sender, EventArgs e)
         {
             // Demanem confirmació abans d'esborrar
-            var resp = MessageBox.Show("Segur que vols esborrar tot el contingut de DESPESES.DAT?", "Confirmar esborrat", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            var resp = MessageBox.Show("Segur que vols esborrar totes les despeses de l'usuari?", "Confirmar esborrat", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (resp != DialogResult.Yes) return;
 
             try
@@ -102,11 +102,11 @@ namespace ProjecteCobolDavid
                 // Recarreguem la graella buida
                 dgvDespeses.DataSource = Despesa.CarregarDades(txtUsuari.Text);
                 FormatCostColumn();
-                MessageBox.Show("DESPESES.DAT s'ha esborrat correctament.", "Fet", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Despeses esborrades correctament.", "Fet", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error esborrant DESPESES.DAT:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error esborrant l'arxiu de dades:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
