@@ -239,6 +239,8 @@ namespace ProjecteCobolDavid
             decimal costDespesa = Convert.ToDecimal(costValue);
             DateTime dataDespesa = Convert.ToDateTime(dataValue);
 
+            Debug.WriteLine($"DEBUG: Intentant esborrar: Nom='{nomDespesa}' Cost={costDespesa} Data={dataDespesa:yyyy-MM-dd}");
+
             // Demanem confirmació mostrant les dades de la despesa a esborrar
             var resp = MessageBox.Show($"Estàs segur que vols esborrar la despesa:\n\nNom: {nomDespesa.Trim()}\nCost: {costDespesa:N2}€\nData: {dataDespesa:yyyy-MM-dd}?", 
                 "Confirmar esborrat", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -247,17 +249,26 @@ namespace ProjecteCobolDavid
             try
             {
                 // Crida al mètode que esborra la despesa específica del fitxer
+                Debug.WriteLine($"DEBUG: Cridant EsborrarDespesa amb usuari='{txtUsuari.Text}'");
                 Despesa.EsborrarDespesa(nomDespesa, costDespesa, dataDespesa, txtUsuari.Text);
+                Debug.WriteLine($"DEBUG: EsborrarDespesa completat sense excepcions");
 
-                // Actualitzem la graella
-                AplicarFiltreTemporal();
+                // Actualitzem la graella forçant una recàrrega completa
+                dgvDespeses.DataSource = null;  // Limpiem primer
+                Debug.WriteLine($"DEBUG: DataSource establert a null");
+
+                AplicarFiltreTemporal();  // Recarreguem amb el filtre actual
+                Debug.WriteLine($"DEBUG: AplicarFiltreTemporal completat");
+
                 ActualitzarTotalCosts();
                 FormatCostColumn();
+                Debug.WriteLine($"DEBUG: Graella refresca completada");
 
                 MessageBox.Show("Despesa esborrada correctament.", "Fet", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
+                Debug.WriteLine($"DEBUG: Excepció al esborrar: {ex.Message}\n{ex.StackTrace}");
                 MessageBox.Show("Error esborrant la despesa:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

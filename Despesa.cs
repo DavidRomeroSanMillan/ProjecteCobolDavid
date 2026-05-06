@@ -162,67 +162,94 @@ namespace ProjecteCobolDavid
         }
 
         // Esborra una despesa específica que coincideix amb Nom, Cost i Data
-        public static void EsborrarDespesa(string nom, decimal cost, DateTime data, string usuari)
-        {
-            string path = ObtenirPathUsuari(usuari);
-            try
-            {
-                if (!File.Exists(path)) return;
+         public static void EsborrarDespesa(string nom, decimal cost, DateTime data, string usuari)
+         {
+             string path = ObtenirPathUsuari(usuari);
+             Debug.WriteLine($"DEBUG EsborrarDespesa: path='{path}', buscant: Nom='{nom}' Cost={cost} Data={data:yyyy-MM-dd}");
 
-                // Llegim totes les línies del fitxer
-                var totes = File.ReadAllLines(path);
+             try
+             {
+                 if (!File.Exists(path))
+                 {
+                     Debug.WriteLine($"DEBUG: Fitxer '{path}' no existeix!");
+                     return;
+                 }
 
-                // Creem una nova llista sense la línia que correspon exactament al nom, cost i data
-                var noves = new List<string>();
-                bool trobat = false;
+                 // Llegim totes les línies del fitxer
+                 var totes = File.ReadAllLines(path);
+                 Debug.WriteLine($"DEBUG: Fitxer té {totes.Length} línies");
 
-                foreach (var linia in totes)
-                {
-                    if (linia.Length >= 68) // Longitud total del registre
-                    {
-                        string nomAlFitxer = linia.Substring(0, 30).Trim();
+                 // Creem una nova llista sense la línia que correspon exactament al nom, cost i data
+                 var noves = new List<string>();
+                 bool trobat = false;
 
-                        // Parsegem el cost (8 dígits en posició 30-37)
-                        string costText = linia.Substring(30, 8).Trim();
-                        decimal costAlFitxer = 0m;
-                        if (int.TryParse(costText, out int centsVal))
-                        {
-                            costAlFitxer = centsVal / 100m;
-                        }
+                 for (int idx = 0; idx < totes.Length; idx++)
+                 {
+                     var linia = totes[idx];
+                     Debug.WriteLine($"DEBUG Línia {idx}: longitud={linia.Length} | '{linia}'");
 
-                        // Parsegem la data (10 caracteres en posició 38-47)
-                        string dataText = linia.Substring(38, 10).Trim();
-                        DateTime dataAlFitxer = DateTime.MinValue;
-                        DateTime.TryParseExact(dataText, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out dataAlFitxer);
+                     if (linia.Length >= 48) // Longitud mínima per tenir Nom, Cost i Data
+                     {
+                         string nomAlFitxer = linia.Substring(0, 30).Trim();
 
-                        // Comprovem si nom, cost i data coincideixen
-                        if (nomAlFitxer == nom.Trim() && costAlFitxer == cost && dataAlFitxer.Date == data.Date && !trobat)
-                        {
-                            trobat = true;
-                            continue;
-                        }
-                    }
+                         // Parsegem el cost (8 dígits en posició 30-37)
+                         string costText = linia.Substring(30, 8).Trim();
+                         decimal costAlFitxer = 0m;
+                         if (int.TryParse(costText, out int centsVal))
+                         {
+                             costAlFitxer = centsVal / 100m;
+                         }
 
-                    // Mantenim totes les altres línies
-                    noves.Add(linia);
-                }
+                         // Parsegem la data (10 caracteres en posició 38-47)
+                         string dataText = linia.Substring(38, 10).Trim();
+                         DateTime dataAlFitxer = DateTime.MinValue;
+                         DateTime.TryParseExact(dataText, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out dataAlFitxer);
 
-                // Reescrivim el fitxer sense línies en blanc
-                if (noves.Count > 0)
-                {
-                    File.WriteAllLines(path, noves, Encoding.UTF8);
-                }
-                else
-                {
-                    File.WriteAllText(path, string.Empty, Encoding.UTF8);
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine("Error esborrant despesa: " + ex.Message);
-                throw;
-            }
-        }
+                         Debug.WriteLine($"  -> Parsed: Nom='{nomAlFitxer}' | Cost={costAlFitxer} | Data={dataAlFitxer:yyyy-MM-dd}");
+                         Debug.WriteLine($"  -> Comparant amb: Nom='{nom.Trim()}' | Cost={cost} | Data={data:yyyy-MM-dd}");
+
+                         // Comprovem si nom, cost i data coincideixen
+                         bool nomCoincideix = nomAlFitxer.Equals(nom.Trim(), StringComparison.OrdinalIgnoreCase);
+                         bool costCoincideix = Math.Abs(costAlFitxer - cost) < 0.001m;
+                         bool dataCoincideix = dataAlFitxer.Date == data.Date;
+
+                         Debug.WriteLine($"  -> Coincideix? Nom={nomCoincideix} | Cost={costCoincideix} | Data={dataCoincideix}");
+
+                         if (nomCoincideix && costCoincideix && dataCoincideix && !trobat)
+                         {
+                             trobat = true;
+                             Debug.WriteLine($"DEBUG: ✓ DESPESA COINCIDEIX - S'esborra la línia {idx}");
+                             continue;
+                         }
+                     }
+
+                     // Mantenim totes les altres línies
+                     noves.Add(linia);
+                 }
+
+                 // Reescrivim el fitxer
+                 if (noves.Count > 0)
+                 {
+                     File.WriteAllLines(path, noves, Encoding.UTF8);
+                     Debug.WriteLine($"DEBUG: Fitxer reescrit amb {noves.Count} línies");
+                 }
+                 else
+                 {
+                     File.WriteAllText(path, string.Empty, Encoding.UTF8);
+                     Debug.WriteLine($"DEBUG: Fitxer buit després de l'esborrat");
+                 }
+
+                 if (!trobat)
+                 {
+                     Debug.WriteLine($"DEBUG: ⚠ AVÍS: No s'ha trobat cap despesa que coincideixi");
+                 }
+             }
+             catch (Exception ex)
+             {
+                 Debug.WriteLine("Error esborrant despesa: " + ex.Message);
+                 throw;
+             }
+         }
 
         public static EstadisticaResultado CalcularEstadisticasCobol(string usuari)
         {
